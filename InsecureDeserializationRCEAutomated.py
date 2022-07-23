@@ -1,4 +1,4 @@
-### This is a automation/solution to OWASP SKF Labs | KBID XXX - Deserialisation Pickle made by Charalampos Theodorou at 22/07/2022
+### This is a automation/solution to OWASP SKF Labs | KBID XXX - Deserialisation with Pickle made at 22/07/2022
 
 # To run the lab use the following commads
 # docker pull blabla1337/owasp-skf-lab:des-pickle-2
